@@ -4,6 +4,33 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+
+    <CurrentYear>$([System.DateTime]::Now.ToString('yyyy'))</CurrentYear>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
   </PropertyGroup>
 
+
+  <PropertyGroup>
+    <Description>Provides native MsQuic libraries for use in C# projects.</Description>
+    <PackageId>YellowDogMan.QUICSharp.Natives</PackageId>
+    <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <Authors>Yellow Dog Man Studios</Authors>
+    <Company>Yellow Dog Man Studios</Company>
+    <Copyright>Copyright (c) Yellow Dog Man Studios s.r.o. $(CurrentYear)</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>networking;quic;msquic;native;library;crossplatform</PackageTags>
+    <RepositoryUrl>https://github.com/Yellow-Dog-Man/QUICSharp.Natives</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <None Include="native/linux-x64/native/**/*" Pack="true" PackagePath="runtimes/linux-x64/native/%(RecursiveDir)" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
+    <Compile Remove="msquic/**/*" />
+  </ItemGroup>
 </Project>
