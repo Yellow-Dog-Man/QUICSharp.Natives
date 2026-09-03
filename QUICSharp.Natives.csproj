@@ -24,13 +24,23 @@
     <PackageTags>networking;quic;msquic;native;library;crossplatform</PackageTags>
     <RepositoryUrl>https://github.com/Yellow-Dog-Man/QUICSharp.Natives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
   </PropertyGroup>
 
 
+  <!-- <Target Name="BuildNativeLib" BeforeTargets="PrepareForBuild">
+    <Exec Command="./build.sh" ConsoleToMsBuild="true" />
+  </Target> -->
+
   <ItemGroup>
-    <None Include="native/linux-x64/native/**/*" Pack="true" PackagePath="runtimes/linux-x64/native/%(RecursiveDir)" />
-    <None Include="README.md" Pack="true" PackagePath="/" />
+    <None Include="runtimes/**/*.*">
+    <Link>runtimes/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <PackagePath>runtimes/%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+    <Pack>true</Pack>
+    </None>
+
+    <None Remove="runtimes/NATIVE LIBS GO HERE" />
     <Compile Remove="msquic/**/*" />
   </ItemGroup>
 </Project>
