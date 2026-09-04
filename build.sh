@@ -25,8 +25,15 @@ export CFLAGS="$CFLAGS $RPATH_FLAG"
 export CXXFLAGS="$CXXFLAGS $RPATH_FLAG"
 
 
-# Make sure git submodules are updated.
-git submodule update --init --depth 1 --recursive
+# Make sure msquic is pulled in
+git submodule update --init
+
+# Only update msquic's own submodules without recursion
+# otherwise a bunch of stuff that's not needed is pulled
+# and wastes a bunch of time.
+cd msquic || exit 1
+git submodule update --init
+cd "$SELF_DIR" || exit 1
 
 # Remove the build folder if it exists already.
 if [[ -d "$BUILD_FOLDER_PATH" ]]; then
