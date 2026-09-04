@@ -15,8 +15,6 @@
   <PropertyGroup>
     <Description>Provides native MsQuic libraries for use in C# projects.</Description>
     <PackageId>YellowDogMan.QUICSharp.Natives</PackageId>
-    <FileVersion>$(Version)</FileVersion>
-    <AssemblyVersion>$(Version)</AssemblyVersion>
     <Authors>Yellow Dog Man Studios</Authors>
     <Company>Yellow Dog Man Studios</Company>
     <Copyright>Copyright (c) Yellow Dog Man Studios s.r.o. $(CurrentYear)</Copyright>
@@ -24,6 +22,7 @@
     <PackageTags>networking;quic;msquic;native;library;crossplatform</PackageTags>
     <RepositoryUrl>https://github.com/Yellow-Dog-Man/QUICSharp.Natives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageVersion>$(Version)</PackageVersion>
     <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
   </PropertyGroup>
 
