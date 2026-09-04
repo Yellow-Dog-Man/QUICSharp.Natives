@@ -62,7 +62,7 @@ PACKAGE_VERSION="$(printf '%b' "${VERSION_NUMBERS//$'\n'/\.}")"
 
 
 mkdir "$BUILD_FOLDER_PATH"
-cd "$BUILD_FOLDER_PATH" || exit
+cd "$BUILD_FOLDER_PATH" || exit 1
 
 cmake -G 'Unix Makefiles' ..
 cmake --build .
@@ -77,5 +77,5 @@ cp "$BUILD_ARTIFACT_DIR/"*.so* "$LINUX_X64_ARTIFACT_DESTINATION"
 cp "$LIBNUMA_SOURCE_FILEPATH" "$LINUX_X64_ARTIFACT_DESTINATION"
 
 # Go back into the package directory and build the nuget package with the msquic version number.
-cd "$SELF_DIR" || exit
+cd "$SELF_DIR" || exit 1
 dotnet build -c Release /p:Version="$PACKAGE_VERSION"
