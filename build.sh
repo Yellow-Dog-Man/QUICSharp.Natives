@@ -26,7 +26,7 @@ export CXXFLAGS="$CXXFLAGS $RPATH_FLAG"
 
 
 # Make sure git submodules are updated.
-git submodule update --init
+git submodule update --init --recursive --depth 1
 
 # Remove the build folder if it exists already.
 if [[ -d "$BUILD_FOLDER_PATH" ]]; then
