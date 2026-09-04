@@ -14,6 +14,10 @@ BUILD_ARTIFACT_FILEPATH="$BUILD_ARTIFACT_DIR/$BUILD_ARTIFACT_FILENAME"
 PACKAGE_RUNTIMES_FOLDER="$SELF_DIR/runtimes"
 LINUX_X64_ARTIFACT_DESTINATION="$PACKAGE_RUNTIMES_FOLDER/linux-x64/native"
 
+if [[ -z "${YDM_VERSION}" ]]; then
+	YDM_VERSION='0.0.0'
+fi
+
 
 # The RUNPATH is embedded into the build file and tells the
 # library to search a colon-separated list of directories
@@ -56,7 +60,7 @@ VERSION_NUMBERS="$(printf '%b' "$VERSION_DATA" | grep -Po '("[[:alnum:]]+":[[:sp
 
 # Grep prints matches on their own lines, so use bash parameter expansion to
 # replace the newlines with periods (.) to yield a version number like '1.2.3'.
-PACKAGE_VERSION="$(printf '%b' "${VERSION_NUMBERS//$'\n'/\.}")"
+NATIVE_VERSION="$(printf '%b' "${VERSION_NUMBERS//$'\n'/\.}")"
 
 
 
@@ -74,4 +78,4 @@ cp "$BUILD_ARTIFACT_DIR/"*.so* "$LINUX_X64_ARTIFACT_DESTINATION"
 
 # Go back into the package directory and build the nuget package with the msquic version number.
 cd "$SELF_DIR" || exit 1
-dotnet build -c Release /p:Version="$PACKAGE_VERSION"
+dotnet build -c Release /p:Version="$NATIVE_VERSION-ydm-$YDM_VERSION"

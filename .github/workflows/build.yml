@@ -20,6 +20,9 @@ jobs:
       with:
         dotnet-version: 10.0.x
 
+    - name: Set version
+      run: echo "YDM_VERSION='1.2.3'" >> $GITHUB_ENV
+
     - name: Build
       run: ./build.sh
 
