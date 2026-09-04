@@ -15,11 +15,10 @@ PACKAGE_RUNTIMES_FOLDER="$SELF_DIR/runtimes"
 LINUX_X64_ARTIFACT_DESTINATION="$PACKAGE_RUNTIMES_FOLDER/linux-x64/native"
 
 
-# Apparently the internet can't tell me how to bundle shared libs with a GCC build.
-LIBNUMA_SOURCE_FILEPATH="/usr/lib/libnuma.so.1"
-
-
-# The RUNPATH is embedded into the build file
+# The RUNPATH is embedded into the build file and tells the
+# library to search a colon-separated list of directories
+# first. This is added in case we need to bundle additional
+# dependencies with msquic.
 export LD_RUN_PATH='$ORIGIN:$ORIGIN/runtimes/linux-x64/native'
 export CFLAGS="$CFLAGS $RPATH_FLAG"
 export CXXFLAGS="$CXXFLAGS $RPATH_FLAG"
@@ -72,9 +71,6 @@ readelf -d "$BUILD_ARTIFACT_FILEPATH" # Print the ELF info for debugging.
 
 # Copy the build artifacts to the runtimes folder for the nuget package.
 cp "$BUILD_ARTIFACT_DIR/"*.so* "$LINUX_X64_ARTIFACT_DESTINATION"
-
-# Copy libnuma.so.1 from the host system. :(
-cp "$LIBNUMA_SOURCE_FILEPATH" "$LINUX_X64_ARTIFACT_DESTINATION"
 
 # Go back into the package directory and build the nuget package with the msquic version number.
 cd "$SELF_DIR" || exit 1
