@@ -1,5 +1,6 @@
 #!/bin/bash
 
+YDM_VERSION="$1"
 
 # Quick way to get the script path as well as the directory it's being run from.
 SELF_FILE="$(realpath "$0")"
