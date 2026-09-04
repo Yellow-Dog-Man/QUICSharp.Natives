@@ -78,4 +78,4 @@ cp "$BUILD_ARTIFACT_DIR/"*.so* "$LINUX_X64_ARTIFACT_DESTINATION"
 
 # Go back into the package directory and build the nuget package with the msquic version number.
 cd "$SELF_DIR" || exit 1
-dotnet build -c Release /p:Version="$NATIVE_VERSION-ydm-$YDM_VERSION"
+dotnet pack -c Release /p:Version="$NATIVE_VERSION-ydm-$YDM_VERSION"
