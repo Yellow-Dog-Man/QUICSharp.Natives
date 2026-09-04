@@ -22,7 +22,6 @@
     <PackageTags>networking;quic;msquic;native;library;crossplatform</PackageTags>
     <RepositoryUrl>https://github.com/Yellow-Dog-Man/QUICSharp.Natives</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageVersion>$(Version)</PackageVersion>
     <!-- <PackageReadmeFile>README.md</PackageReadmeFile> -->
   </PropertyGroup>
 
